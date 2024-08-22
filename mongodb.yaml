@@ -5,7 +5,7 @@
   tasks: 
   - name: Copy mongo repo file to yum.repo
     ansible.builtin.copy:
-      src: /home/centos/ansible-roboshop/mongodb.repo
+      src: mongodb.repo
       dest: /etc/yum.repos.d/mongo.repo
   
   - name: install mongodb
