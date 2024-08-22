@@ -1,0 +1,26 @@
+- name: Install Mongodb component
+  hosts: mongodb
+  become: yes
+
+  tasks: 
+  - name: Copy mongo repo file to yum.repo
+    ansible.builtin.copy:
+      src: /home/centos/ansible-roboshop/mongodb.repo
+      dest: /etc/yum.repos.d/mongo.repo
+  
+  - name: install mongodb
+    ansible.builtin.yum: 
+      name: mongodb-org
+      state: installed
+
+  - name: enable mongodb
+    ansible.builtin.service: 
+      name: mongod
+      state: enable
+
+  - name: start mongodb
+    ansible.builtin.service: 
+      name: mongod
+      state: started 
+
+
