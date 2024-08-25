@@ -1,0 +1,11 @@
+- name: Install web component
+  hosts: web
+  become: yes
+
+  tasks: 
+  - name: To install Nginx
+    ansible.builtin.yum: 
+      name: nginx
+      state: installed
+
+      
