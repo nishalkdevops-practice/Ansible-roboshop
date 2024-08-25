@@ -1,0 +1,10 @@
+- name: Install catalogue component 
+  hosts: catalogue
+  become: yes
+
+
+  tasks: 
+  - name: NodeJS repos. Vendor is providing a script to setup the repos setup NPM resources
+    ansible.builtin.script: "curl -sL https://rpm.nodesource.com/setup_lts.x | bash"
+
+    
