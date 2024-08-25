@@ -13,14 +13,14 @@
       name: mongodb-org
       state: installed
 
-  - name: enable mongodb
-    ansible.builtin.service: 
-      name: mongod
-      state: enable
+  # - name: enable mongodb
+  #   ansible.builtin.service: 
+  #     name: mongod
+  #     state: enable
 
-  - name: start mongodb
-    ansible.builtin.service: 
-      name: mongod
-      state: started 
+  # - name: start mongodb
+  #   ansible.builtin.service: 
+  #     name: mongod
+  #     state: started 
 
 
