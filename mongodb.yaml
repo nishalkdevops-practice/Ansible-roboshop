@@ -13,14 +13,21 @@
       name: mongodb-org
       state: installed
 
-  # - name: enable mongodb
-  #   ansible.builtin.service: 
-  #     name: mongod
-  #     state: enable
+  - name: enable and start mongodb
+    ansible.builtin.service: 
+      name: mongod
+      state: started
+      enabled: yes
 
-  # - name: start mongodb
-  #   ansible.builtin.service: 
-  #     name: mongod
-  #     state: started 
+  - name: changing config file IP address 
+    ansible.builtin.replace:
+      path: /etc/mongod.conf
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'
 
+  - name: restart mongodb
+    ansible.builtin.service: 
+      name: mongod
+      state: restarted
+      
 
