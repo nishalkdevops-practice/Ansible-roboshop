@@ -77,7 +77,7 @@
       state: installed
 
   - name: loading schema catalogue data 
-    ansible.builtin.command: mongo --host mongodb.nishalkdevops.online </app/schema/catalogue.js
+    ansible.builtin.command: mongo --host mongodb.nishalkdevops.online < /app/schema/catalogue.js
 
   - name: restart catalogue
     ansible.builtin.service: 
