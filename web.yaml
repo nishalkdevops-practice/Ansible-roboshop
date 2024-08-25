@@ -19,15 +19,20 @@
       path: /usr/share/nginx/html/*
       state: absent
 
+  - name: create html directory 
+    ansible.builtin.file:
+      path: /usr/share/nginx/html
+      state: directory
+
   - name: Download Application frontend content
     ansible.builtin.get_url:
       url: https://roboshop-builds.s3.amazonaws.com/web.zip
-      dest: /usr/share/nginx/html
+      dest: /tmp
 
   - name: Extract web artifact 
     ansible.builtin.unarchive:
-      src: /usr/share/nginx/html/web.zip
-      dest: /tmp/web.zip
+      src: /tmp/web.zip
+      dest: /usr/share/nginx/html
       remote_src: yes
 
   - name: Copy roboshop config file
