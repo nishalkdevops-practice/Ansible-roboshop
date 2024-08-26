@@ -4,12 +4,14 @@
 
   tasks: 
   - name: Install python 3.6  module 
-    ansible.builtin.yum: "{{item}}"
+    ansible.builtin.yum: 
+      name: "{{item}}"
+      state: installed
     loop: 
     - python36 
     - gcc 
     - python3-devel
-      state: installed
+  
 
 
  - name: check roboshop user exist or not   #here we are checking either the robosho user exist or not 
