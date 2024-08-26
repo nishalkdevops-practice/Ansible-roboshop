@@ -14,7 +14,7 @@
   
 
 
- - name: check roboshop user exist or not   #here we are checking either the robosho user exist or not 
+  - name: check roboshop user exist or not   #here we are checking either the robosho user exist or not 
     ansible.builtin.command: id roboshop
     register: out
     ignore_errors: true 
