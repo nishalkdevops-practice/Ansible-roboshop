@@ -1,0 +1,71 @@
+- name: payment module installation
+  hosts: payment
+  become: yes
+
+  tasks: 
+  - name: Install python 3.6  module 
+    ansible.builtin.yum: "{{item}}"
+    loop: 
+    - python36 
+    - gcc 
+    - python3-devel
+      state: installed
+
+
+ - name: check roboshop user exist or not   #here we are checking either the robosho user exist or not 
+    ansible.builtin.command: id roboshop
+    register: out
+    ignore_errors: true 
+
+  - when: out.rc != 0 
+    name: create user roboshop 
+    become: yes
+    ansible.builtin.user: 
+      name: roboshop  
+
+  - name: create /app directory exist or not 
+    ansible.builtin.stat:
+      path: /app
+    register: directory
+
+
+  - name: print the directory stats
+    ansible.builtin.debug: 
+      msg: "output: {{directory}}"
+
+  - when: directory.stat.exists == false
+    name: create /app directory 
+    ansible.builtin.file: 
+      path: /app
+      state: directory
+
+
+  - name: Download Application code
+    ansible.builtin.get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/payment.zip
+      dest: /tmp
+  
+
+  - name: Extract payment artifact 
+    ansible.builtin.unarchive:
+      src: /tmp/payment.zip
+      dest: /app
+      remote_src: yes
+
+  - name: Install requirements file python
+    ansible.builtin.shell: pip3.6 install -r requirements.txt
+
+  - name: Copy payment services
+    ansible.builtin.copy:
+      src: payment.service
+      dest: /etc/systemd/system/payment.service
+
+  - name: demon reload 
+    ansible.builtin.systemd_service:
+      daemon_reload: true
+
+  - name: start and enable payment
+    ansible.builtin.service: 
+      name: payment
+      state: started 
+      enabled: yes 
