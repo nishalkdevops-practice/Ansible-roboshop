@@ -22,4 +22,21 @@ cart.nishalkdevops.online
 
 user.nishalkdevops.online
 
+[mysql]
+
+mysql.nishalkdevops.online
+
+[shipping]
+
+shipping.nishalkdevops.online
+
+
+[rabbitmq]
+
+rabbitmq.nishalkdevops.online
+
+[payment]
+
+payment.nishalkdevops.online
+
 
