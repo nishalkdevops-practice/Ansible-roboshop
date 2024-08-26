@@ -9,3 +9,17 @@ catalogue.nishalkdevops.online
 [web]
 
 web.nishalkdevops.online
+
+[redis]
+
+redis.nishalkdevops.online
+
+[cart]
+
+cart.nishalkdevops.online
+
+[user]
+
+cart.nishalkdevops.online
+
+
