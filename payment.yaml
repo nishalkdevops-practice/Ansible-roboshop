@@ -54,8 +54,11 @@
       dest: /app
       remote_src: yes
 
-  - name: Install requirements file python
-    ansible.builtin.shell: pip3.6 install -r requirements.txt
+  - name: Install dependencies
+    ansible.builtin.command: pip3.6 install -r requirements.txt
+    args: 
+      chdir: /app
+
 
   - name: Copy payment services
     ansible.builtin.copy:
